@@ -119,6 +119,7 @@ stage {
 	&:insensitive {
 		@include button(flat-insensitive);
 		border-radius: $corner-radius;
+		color: $error;
 	}
 }
 
@@ -390,9 +391,11 @@ $sub_menu_bg: mix($text, $popover, 10%);
 	margin: $space-size;
 	box-shadow: none;
 
-	/* @if $outline == 'true' {
-        border: 2px solid $primary;
-    } */
+	@if $outline == 'false' and $variant == 'dark' {
+		border: 1px solid $window-border;
+	} @else {
+		border: none;
+	}
 
 	&-arrow {
 		icon-size: 16px;
@@ -423,11 +426,12 @@ $sub_menu_bg: mix($text, $popover, 10%);
 		padding: $space-size;
 		border-radius: $menu-radius;
 		background-color: $popover;
-		box-shadow: 0 5px 12px rgba(black, 0.35);
 
-		@if $outline == 'true' {
-			border: 2px solid $primary;
+		@if $outline == 'false' and $variant == 'dark' {
+			border: 1px solid highlight($popover);
 			background-clip: border-box;
+		} @else {
+			border: 2px solid $primary;
 		}
 	}
 
@@ -480,7 +484,10 @@ $sub_menu_bg: mix($text, $popover, 10%);
 
 	padding: $space-size;
 
-	@if $outline == 'true' {
+	@if $outline == 'false' and $variant == 'dark' {
+		border: 1px solid highlight($popover);
+		background-clip: border-box;
+	} @else {
 		border: 2px solid $primary;
 	}
 }
@@ -1142,9 +1149,16 @@ $sub_menu_bg: mix($text, $popover, 10%);
 	margin-from-right-edge-of-screen: $space-size * 3;
 	width: 28em;
 	color: $text;
-	background-color: rgba($base, 0.8);
+	background-color: $base;
 	box-shadow: 0 5px 12px rgba(black, 0.35);
 	margin: 7px 12px 17px 12px;
+
+	@if $outline == 'false' and $variant == 'dark' {
+		border: 1px solid highlight($popover);
+		background-clip: border-box;
+	} @else {
+		border: 2px solid $primary;
+	}
 
 	.notification-button,
 	.notification-icon-button {
@@ -1160,12 +1174,12 @@ $sub_menu_bg: mix($text, $popover, 10%);
 	.popup-menu & {
 		border: none;
 		border-radius: $corner-radius;
-		background-color: rgba($text, 0.05);
+		background-color: $base;
 		box-shadow: none;
 		margin: 0;
 
 		&:hover {
-			background-color: rgba($text, 0.1);
+			background-color: $surface;
 			box-shadow: 0 3px 8px rgba(black, 0.15);
 		}
 
@@ -1342,11 +1356,11 @@ $sub_menu_bg: mix($text, $popover, 10%);
 	background-color: rgba($background, 0.95);
 	padding: $space-size;
 	border-radius: $corner-radius;
-	box-shadow:
-		0 3px 8px rgba(black, 0.75),
-		0 5px 18px rgba(black, 0.55);
-	/* border: 1px solid $divider; */
-	@if $outline == 'true' {
+
+	@if $outline == 'false' and $variant == 'dark' {
+		border: 1px solid highlight($popover);
+		background-clip: border-box;
+	} @else {
 		border: 2px solid $primary;
 	}
 
@@ -1481,6 +1495,13 @@ $sub_menu_bg: mix($text, $popover, 10%);
 // password or authentication dialog
 
 .prompt-dialog {
+	@if $outline == 'false' and $variant == 'dark' {
+		border: 1px solid highlight($popover);
+		background-clip: border-box;
+	} @else {
+		border: 2px solid $primary;
+	}
+
 	width: 26em;
 
 	.dialog-content-box {
@@ -1979,9 +2000,14 @@ $ws_dot_inactive: $ws_indicator_height / 6;
 	color: $primary;
 	background-color: transparentize($background, 0.01);
 	/* border: 1px solid transparentize($divider, 0.01); */
-	@if $outline == 'true' {
+
+	@if $outline == 'false' and $variant == 'dark' {
+		border: 1px solid highlight($popover);
+		background-clip: border-box;
+	} @else {
 		border: 2px solid $primary;
 	}
+
 	border-radius: $modal-radius;
 	text-align: center;
 	padding: $space-size * 4;
@@ -2177,7 +2203,10 @@ $ws_dot_inactive: $ws_indicator_height / 6;
 		background-clip: border-box;
 		box-shadow: 0 5px 12px rgba(black, 0.35);
 
-		@if $outline == 'true' {
+		@if $outline == 'false' and $variant == 'dark' {
+			border: 1px solid highlight($popover);
+			background-clip: border-box;
+		} @else {
 			border: 2px solid $primary;
 		}
 
